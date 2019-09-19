@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="./css/main.css" type="text/css">
+	
+	<script type="text/javascript" src="./js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/lib/TweenMax.min.js"></script>
+	<script type="text/javascript" src="./js/ScrollMagic.js"></script>
+	<script type="text/javascript" src="./js/lib/animation.gsap.js"></script>
+	<!-- <script type="text/javascript" src="./js/lib/debug.addIndicators.js"></script> -->
+	<script type="text/javascript" src="./js/main.js"></script>
+</head>
+<body>
+	<!-- <ul id="menu"></ul> -->
+	<div id="content-wrapper">
+		<div id="example-wrapper">
+			<div class="scrollContent">
+				<section id="titlechart">
+					<div id="description">
+						<h1 class="badge gsap">Section Wipes (manual)</h1>
+					</div>
+				</section>
+				<section class="demo" id="section-wipes">
+					<style type="text/css">
+						#pinContainer {
+							width: 100%;
+							height: 100%;
+							overflow: hidden;
+						}
+						.panel {
+							height: 100%;
+							width: 100%;
+							position: absolute;
+						}
+					</style>
+					<div id="pinContainer">
+						<section class="panel blue">
+							<b>ONE</b>
+						</section>
+						<section class="panel turqoise">
+							<b>TWO</b>
+						</section>
+						<section class="panel green">
+							<b>THREE</b>
+						</section>
+						<section class="panel bordeaux">
+							<b>FOUR</b>
+						</section>
+					</div>
+					<script>
+						$(function () { // wait for document ready
+							// init
+							var controller = new ScrollMagic.Controller();
+
+							// define movement of panels
+							var wipeAnimation = new TimelineMax()
+								.fromTo("section.panel.turqoise", 1, {x: "-100%"}, {x: "0%", ease: Linear.easeNone})  // in from left
+								.fromTo("section.panel.green",    1, {x:  "100%"}, {x: "0%", ease: Linear.easeNone})  // in from right
+								.fromTo("section.panel.bordeaux", 1, {y: "-100%"}, {y: "0%", ease: Linear.easeNone}); // in from top
+
+							new ScrollMagic.Scene({
+									triggerElement: "#pinContainer",
+									triggerHook: "onLeave",
+									duration: "300%"
+								})
+								.setPin("#pinContainer")
+								.setTween(wipeAnimation)
+								.addIndicators()
+								.addTo(controller);
+						});
+					</script>
+				</section>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
