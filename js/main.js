@@ -1,6 +1,4 @@
-$(function () { 
-	// wait for document ready
-	// init
+window.onscroll = function() { 
 	var controller = new ScrollMagic.Controller();
 
 	// define movement of panels
@@ -18,4 +16,4 @@ $(function () {
 		.setTween(wipeAnimation)
 		.addIndicators()
 		.addTo(controller);
-	});
+}
